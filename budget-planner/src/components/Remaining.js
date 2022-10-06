@@ -16,3 +16,5 @@ const RemainingBudget = () => {
 		</div>
 	);
 };
+
+export default RemainingBudget;
