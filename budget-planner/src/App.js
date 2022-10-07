@@ -1,6 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+//import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import { AppProvider } from './context/AppContext';
 import Budget from './components/Budget';
@@ -13,6 +13,9 @@ import RemainingBudget from './components/Remaining';
 const App = () => {
 	return (
 		<AppProvider>
+			<div>
+				
+			</div>
 			<div className='container'>
 				<div className='row mt-3'>
 					<div className='col-sm'>
