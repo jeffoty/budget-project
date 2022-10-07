@@ -1,47 +1,31 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-//import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import { AppProvider } from './context/AppContext';
-import Budget from './components/Budget';
-import ExpenseTotal from './components/ExpenseTotal';
-import ExpenseList from './components/ExpenseList';
-import AddExpenseForm from './components/AddExpenseForm';
-import RemainingBudget from './components/Remaining';
+import './style.css'
+import { BrowserRouter, NavLink, Routes, Route } from 'react-router-dom';
 
+import Contact from './components/Contact';
+import Home from './components/Home';
+import About from './components/About';
 
 const App = () => {
+	let activeClassName = "nav-active"
 	return (
-		<AppProvider>
-			<div>
-				
-			</div>
-			<div className='container'>
-				<div className='row mt-3'>
-					<div className='col-sm'>
-						<Budget />
-					</div>
-					<div className='col-sm'>
-						<RemainingBudget />
-					</div>
-					<div className='col-sm'>
-						<ExpenseTotal />
-					</div>
-				</div>
-				<h3 className='mt-3'>Expenses</h3>
-				<div className='row '>
-					<div className='col-sm'>
-						<ExpenseList />
-					</div>
-				</div>
-				<h3 className='mt-3'>Add Expense</h3>
-				<div className='row mt-3'>
-					<div className='col-sm'>
-						<AddExpenseForm />
-					</div>
-				</div>
-			</div>
-		</AppProvider>
+		< BrowserRouter>
+		    <header>
+				<h1>Budget Planner</h1>
+			</header>
+			<nav>
+				<NavLink to='' className={({ isActive }) => isActive && activeClassName}>Home</NavLink>
+				<NavLink to='about' className={({ isActive }) => isActive && activeClassName}>About</NavLink>
+				<NavLink to='contact' className={({ isActive }) => isActive && activeClassName}>Contact</NavLink>
+			</nav>
+			<Routes>
+				<Route path='/' element={<Home/>} />
+				<Route path='about' element={<About/>} />
+				<Route path='contact' element={<Contact/>} />
+			</Routes>
+			
+		</BrowserRouter>
 	);
 };
 
