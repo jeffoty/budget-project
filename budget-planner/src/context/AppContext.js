@@ -38,3 +38,25 @@ const initialState = {
 		{ id: uuidv4(), name: 'Shopping', cost: 5000 },
 	],
 };
+
+export const AppContext = createContext();
+
+// 3. Provider component - wraps the components we want to give access to the state
+// Accepts the children, which are the nested(wrapped) components
+export const AppProvider = (props) => {
+	// 4. Sets up the app state. takes a reducer, and an initial state
+	const [state, dispatch] = useReducer(AppReducer, initialState);
+
+	// 5. Returns our context. Pass in the values we want to expose
+	return (
+		<AppContext.Provider
+			value={{
+				expenses: state.expenses,
+				budget: state.budget,
+				dispatch,
+			}}
+		>
+			{props.children}
+		</AppContext.Provider>
+	);
+};
