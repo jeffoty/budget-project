@@ -22,3 +22,5 @@ const EditBudget = (props) => {
 		</>
 	);
 };
+
+export default EditBudget;
