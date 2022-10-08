@@ -12,4 +12,4 @@ This is a budget planning app that works out your monthly expenses and then adds
 4. followed by npm start to open the react file in the browser.
 
 ## live link
-
+Link: https://jef-budget-project.netlify.app/
