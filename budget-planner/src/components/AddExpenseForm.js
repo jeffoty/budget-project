@@ -1,25 +1,31 @@
-import React, { useContext, useState } from 'react';
-import { AppContext } from '../context/AppContext';
-import { v4 as uuidv4 } from 'uuid';
+import React, { useState } from 'react';
+
+
 
 const AddExpenseForm = (props) => {
-	const { dispatch } = useContext(AppContext);
 
 	const [name, setName] = useState('');
 	const [cost, setCost] = useState('');
 
 	const onSubmit = (event) => {
 		event.preventDefault();
+
+		
 		const expense = {
-			id: uuidv4(),
-			name,
+			name: name,
 			cost: parseInt(cost),
 		};
 
-		dispatch({
-			type: 'ADD_EXPENSE',
-			payload: expense,
-		});
+		console.log(expense);
+
+		fetch("https://otybudget.herokuapp.com/expenses", {
+			method: "POST",
+			headers: {
+				"content-type": "application/json"
+			},
+			body: JSON.stringify(expense)
+		})
+		.then(res => console.log(res))
 
 		setName('');
 		setCost('');

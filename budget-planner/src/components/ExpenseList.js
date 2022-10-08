@@ -1,15 +1,18 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, {  useState, useEffect } from 'react';
 import ExpenseItem from './ExpenseItem';
-import { AppContext } from '../context/AppContext';
+
 
 const ExpenseList = () => {
-	const { expenses } = useContext(AppContext);
 
-	const [filteredExpenses, setfilteredExpenses] = useState(expenses || []);
+	const [expenses, setExpenses] = useState([])
+	const [setfilteredExpenses] = useState(expenses || []);
 
 	useEffect(() => {
-		setfilteredExpenses(expenses);
-	}, [expenses]);
+		fetch("https://otybudget.herokuapp.com/expenses")
+		.then(res => res.json())
+		.then(expenses => setExpenses(expenses))
+		
+	}, []);
 
 	const handleChange = (event) => {
 		const searchResults = expenses.filter((filteredExpense) =>
@@ -27,7 +30,7 @@ const ExpenseList = () => {
 				onChange={handleChange}
 			/>
 			<ul class='list-group mt-3 mb-3'>
-				{filteredExpenses.map((expense) => (
+				{expenses.map((expense) => (
 					<ExpenseItem
 						id={expense.id}
 						name={expense.name}
